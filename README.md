@@ -1,7 +1,7 @@
-# education
+# myproject
 将`GOPATH`设置为`/root/go`,拉取项目：
 ```
-cd $GOPATH/src && git clone https://github.com/sxguan/education.git
+cd $GOPATH/src && git clone https://github.com/sxguan/myproject.git
 ```
 在`/etc/hosts`中添加：
 ```
@@ -11,7 +11,7 @@ cd $GOPATH/src && git clone https://github.com/sxguan/education.git
 ```
 添加依赖：
 ```
-cd education && go mod tidy
+cd myproject && go mod tidy
 ```
 运行项目：
 ```

@@ -26,7 +26,6 @@ func Setup(configFile string, info *SdkEnvInfo) (*fabsdk.FabricSDK, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	// 为组织获得Client句柄和Context信息
 	for _, org := range info.Orgs {
 		org.orgMspClient, err = mspclient.New(sdk.Context(), mspclient.WithOrg(org.OrgName))
@@ -55,7 +54,6 @@ func CreateAndJoinChannel(info *SdkEnvInfo) error {
 	if len(info.Orgs) == 0 {
 		return fmt.Errorf("通道组织不能为空，请提供组织信息")
 	}
-
 	// 获得所有组织的签名信息
 	signIds := []msp.SigningIdentity{}
 	for _, org := range info.Orgs {
@@ -101,7 +99,7 @@ func createChannel(signIDs []msp.SigningIdentity, info *SdkEnvInfo) error {
 	if _, err := chMgmtClient.SaveChannel(req, resmgmt.WithRetry(retry.DefaultResMgmtOpts), resmgmt.WithOrdererEndpoint("orderer.example.com")); err != nil {
 		return fmt.Errorf("error should be nil for SaveChannel of orgchannel: %v", err)
 	}
-
+	
 	fmt.Println(">>>> 使用每个org的管理员身份更新锚节点配置...")
 	//do the same get ch client and create channel for each anchor peer as well (first for Org1MSP)
 	for i, org := range info.Orgs {
