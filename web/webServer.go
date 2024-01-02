@@ -3,7 +3,7 @@ package web
 import (
 	"encoding/base64"
 	"fmt"
-	"myproject/service"
+	"gnark_and_fabric/service"
 	"net/http"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/std/hash/mimc"
@@ -237,3 +237,5 @@ func WebStart(app Application) {
 		fmt.Println("Error starting server: ", err)
 	}
 }
+
+

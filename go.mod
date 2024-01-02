@@ -1,4 +1,4 @@
-module myproject
+module gnark_and_fabric
 
 go 1.18
 

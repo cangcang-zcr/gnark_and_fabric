@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
-	"myproject/sdkInit"
-	"myproject/service"
-	"myproject/web"
+	"gnark_and_fabric/sdkInit"
+	"gnark_and_fabric/service"
+	"gnark_and_fabric/web"
 	"os"
 	"time"
 
@@ -16,6 +16,19 @@ import (
 	"github.com/consensys/gnark/std/hash/mimc"
 	shell "github.com/ipfs/go-ipfs-api"
 )
+
+// 这个代码是一个区块链项目的示例代码，主要实现了以下功能：
+
+// 1. 通过 IPFS 存储字符串信息，并获取它的 CID。
+// 2. 生成私钥和公钥，并将公钥进行 base64 编码。
+// 3. 使用 SDK 创建通道并加入，并且创建链码生命周期。
+// 4. 调用链码中的外部服务，将公钥信息存储到区块链上。
+// 5. 查询区块链中存储的公钥信息。
+// 6. 生成零知识参数，并将其存储到区块链上。
+// 7. 获取区块链中存储的零知识参数。
+// 8. 执行零知识证明，生成 proof。
+// 9. 将生成的 proof 和公共 witness 的数据转换为二进制流，并存储到区块链上。
+// 10. 验证区块链中存储的零知识证明。
 
 const (
 	cc_name    = "simplecc"
@@ -50,23 +63,23 @@ func main() {
 			OrgMspId:      "Org1MSP",
 			OrgUser:       "User1",
 			OrgPeerNum:    1,
-			OrgAnchorFile: os.Getenv("GOPATH") + "/src/myproject/fixtures/channel-artifacts/Org1MSPanchors.tx",
+			OrgAnchorFile: os.Getenv("GOPATH") + "/src/gnark_and_fabric/fixtures/channel-artifacts/Org1MSPanchors.tx",
 		},
 	}
 
 	// init sdk env info
 	info := sdkInit.SdkEnvInfo{
 		ChannelID:        "mychannel",
-		ChannelConfig:    os.Getenv("GOPATH") + "/src/myproject/fixtures/channel-artifacts/channel.tx",
+		ChannelConfig:    os.Getenv("GOPATH") + "/src/gnark_and_fabric/fixtures/channel-artifacts/channel.tx",
 		Orgs:             orgs,
 		OrdererAdminUser: "Admin",
 		OrdererOrgName:   "OrdererOrg",
 		OrdererEndpoint:  "orderer.example.com",
 		ChaincodeID:      cc_name,
-		ChaincodePath:    os.Getenv("GOPATH") + "/src/myproject/chaincode/",
+		ChaincodePath:    os.Getenv("GOPATH") + "/src/gnark_and_fabric/chaincode/",
 		ChaincodeVersion: cc_version,
 	}
-	print(os.Getenv("GOPATH") + "/src/myproject/fixtures/channel-artifacts/channel.tx")
+	print(os.Getenv("GOPATH") + "/src/gnark_and_fabric/fixtures/channel-artifacts/channel.tx")
 	// sdk setup
 	sdk, err := sdkInit.Setup("config.yaml", &info)
 	if err != nil {
