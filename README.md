@@ -84,3 +84,23 @@ chmod +x ./start.sh
 10. 验证区块链中存储的零知识证明。
 
 ## web
+一个简单的web服务，接受请求并向区块链智能合约发送请求
+包括获取存储的 密钥 ipfs地址 存入密钥和地址
+## sdkInit
+负责fabric的创建组织 
+部署智能合约的sdk
+## service
+一些工具函数
+dh密钥协商
+零知识证明所需要的mimc哈希函数
+Service将智能合约的abi封装成函数
+## chaincode
+fabric智能合约
+能够将 密钥、ipfs地址、零知识证明参数存储在区块链上
+并且完成零知识证明的验证
+## fixtures
+项目的docker配置 docker-compose.yaml配置节点容器
+crypto-config.yaml 配置组织和节点数目信息
+configtx.yaml 配置组织和节点的证书即公私钥
+crypto-config 存储组织和节点的证书
+channel-artifacts 组织和创世块
